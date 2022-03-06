@@ -769,8 +769,8 @@ end)
 
 BluePrintsPage.MouseButton1Click:connect(function()
 	local Table = {
-		"Zone 2",
-		"Zone 3",
+		"Zone 2 Blueprint",
+		"Zone 3 Blueprint",
 		"Betting Store Blueprint",
 		"Tech Store Blueprint",
 		"Jewelry Store Blueprint",
