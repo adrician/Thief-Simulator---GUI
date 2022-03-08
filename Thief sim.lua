@@ -231,7 +231,7 @@ getByName("Support Ukraine"):Destroy()
 -- Farewell Infortality.
 -- Version: 2.82
 -- Instances:
-local ScreenGui = Instance.new("ScreenGui")
+local PatchedScreengui = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
 local MainPage = Instance.new("Frame")
 local Message = Instance.new("Frame")
@@ -239,9 +239,9 @@ local versionLabel = Instance.new("TextLabel")
 local CreditsLabel = Instance.new("TextLabel")
 local DiscordFrame = Instance.new("Frame")
 local discordButton = Instance.new("TextButton")
-local MenuButton = Instance.new("TextButton")
 local topbackground = Instance.new("Frame")
 local Title = Instance.new("TextLabel")
+local secondarytitle = Instance.new("TextLabel")
 local MenuPage = Instance.new("Frame")
 local FarmPage = Instance.new("TextButton")
 local Main = Instance.new("TextButton")
@@ -267,11 +267,12 @@ local BackPackspage = Instance.new("TextButton")
 local UpgradesPage = Instance.new("TextButton")
 local BluePrintsPage = Instance.new("TextButton")
 --Properties:
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+PatchedScreengui.Name = "PatchedScreengui"
+PatchedScreengui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+PatchedScreengui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 MainFrame.Name = "MainFrame"
-MainFrame.Parent = ScreenGui
+MainFrame.Parent = PatchedScreengui
 MainFrame.Active = true
 MainFrame.BackgroundColor3 = Color3.new(0.0313726, 0.0313726, 0.0313726)
 MainFrame.BorderColor3 = Color3.new(0, 0, 0)
@@ -280,6 +281,7 @@ MainFrame.Size = UDim2.new(0, 436, 0, 292)
 
 MainPage.Name = "MainPage"
 MainPage.Parent = MainFrame
+MainPage.Active = true
 MainPage.BackgroundColor3 = Color3.new(0.0313726, 0.0313726, 0.0313726)
 MainPage.BorderColor3 = Color3.new(0, 0, 0)
 MainPage.Position = UDim2.new(0, 0, 0.137387007, 0)
@@ -339,19 +341,9 @@ discordButton.Text = "Copy Discord Link"
 discordButton.TextColor3 = Color3.new(1, 1, 1)
 discordButton.TextSize = 14
 
-MenuButton.Name = "MenuButton"
-MenuButton.Parent = MainPage
-MenuButton.BackgroundColor3 = Color3.new(0.203922, 0.203922, 0.203922)
-MenuButton.Position = UDim2.new(0.0275229327, 0, 0.0614255369, 0)
-MenuButton.Size = UDim2.new(0, 134, 0, 220)
-MenuButton.Font = Enum.Font.SourceSans
-MenuButton.Text = "Menu"
-MenuButton.TextColor3 = Color3.new(1, 1, 1)
-MenuButton.TextSize = 25
-MenuButton.TextWrapped = true
-
 topbackground.Name = "topbackground"
 topbackground.Parent = MainFrame
+topbackground.Active = true
 topbackground.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
 topbackground.BorderColor3 = Color3.new(0, 0, 0)
 topbackground.BorderSizePixel = 0
@@ -366,12 +358,25 @@ Title.BorderColor3 = Color3.new(0, 0, 0)
 Title.Position = UDim2.new(0, 0, -4.73100042, 0)
 Title.Size = UDim2.new(0, 436, 0, 40)
 Title.Font = Enum.Font.Gotham
-Title.Text = "Thief Simulator"
+Title.Text = "Thief Simulator - Patched 08/03/22"
 Title.TextColor3 = Color3.new(1, 1, 1)
 Title.TextSize = 25
 
+secondarytitle.Name = "secondary title"
+secondarytitle.Parent = Title
+secondarytitle.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
+secondarytitle.BorderColor3 = Color3.new(0, 0, 0)
+secondarytitle.Position = UDim2.new(0.0504587144, 0, 1.37792516, 0)
+secondarytitle.Size = UDim2.new(0, 252, 0, 220)
+secondarytitle.Font = Enum.Font.Gotham
+secondarytitle.Text = "Detected right now, will be updated shortly check out our discord server for further updates."
+secondarytitle.TextColor3 = Color3.new(1, 1, 1)
+secondarytitle.TextSize = 15
+secondarytitle.TextWrapped = true
+
 MenuPage.Name = "MenuPage"
 MenuPage.Parent = MainFrame
+MenuPage.Active = true
 MenuPage.BackgroundColor3 = Color3.new(0.0313726, 0.0313726, 0.0313726)
 MenuPage.BorderColor3 = Color3.new(0, 0, 0)
 MenuPage.Position = UDim2.new(0, 0, 0.137387007, 0)
@@ -413,6 +418,7 @@ ShopPage.TextWrapped = true
 
 afOnePage.Name = "afOnePage"
 afOnePage.Parent = MainFrame
+afOnePage.Active = true
 afOnePage.BackgroundColor3 = Color3.new(0.0313726, 0.0313726, 0.0313726)
 afOnePage.BorderColor3 = Color3.new(0, 0, 0)
 afOnePage.Position = UDim2.new(0, 0, 0.133962348, 0)
@@ -551,6 +557,7 @@ questFarmButton.TextWrapped = true
 
 shopOnePage.Name = "shopOnePage"
 shopOnePage.Parent = MainFrame
+shopOnePage.Active = true
 shopOnePage.BackgroundColor3 = Color3.new(0.0313726, 0.0313726, 0.0313726)
 shopOnePage.BorderColor3 = Color3.new(0, 0, 0)
 shopOnePage.Position = UDim2.new(0, 0, 0.137387007, 0)
@@ -618,172 +625,6 @@ BluePrintsPage.TextSize = 25
 BluePrintsPage.TextWrapped = true
 -- Scripts:
 
-
-
-MenuButton.MouseButton1Click:Connect(function()
-	MainPage.Visible = false
-	MenuPage.Visible = true
-end)
-
-Main.MouseButton1Click:Connect(function()
-	MenuPage.Visible = false
-	MainPage.Visible = true
-end)
-
-FarmPage.MouseButton1Click:Connect(function()
-	MenuPage.Visible = false
-	afOnePage.Visible = true
-end)
-
-afMenu.MouseButton1Click:Connect(function()
-	afOnePage.Visible = false
-	MenuPage.Visible = true 
-end)
-
-ShopPage.MouseButton1Click:Connect(function()
-	MenuPage.Visible = false
-	shopOnePage.Visible = true
-end)
-
-shopMenu.MouseButton1Click:Connect(function()
-	shopOnePage.Visible = false
-	MenuPage.Visible = true
-end)
-
-
-
--- stats 
-
-_G.npcFarm = false
-_G.sellpack = false
-_G.quest = false
-_G.tools = false
-
-
-npcFarmButton.MouseButton1Click:connect(function()
-
-	if _G.npcFarm == false then
-		npcFarmLine:TweenSize(UDim2.new(1, 0,0, 2), "Out", "Sine", 0.3, true)
-		_G.npcFarm = true
-		while _G.npcFarm and wait() do
-			for i,v in pairs(game.workspace:GetChildren()) do
-				if string.find(v.name,"Base") and v:FindFirstChild("HumanoidRootPart") then 
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
-					if v.HumanoidRootPart:FindFirstChild("ProximityPrompt") then
-						fireproximityprompt(v.HumanoidRootPart.ProximityPrompt)
-					end
-				end       
-			end
-		end
-	else
-		npcFarmLine:TweenSize(UDim2.new(0, 0,0, 2), "Out", "Sine", 0.3, true)
-		_G.npcFarm = false
-	end
-end)
-
-sellFarmButton.MouseButton1Click:connect(function()
-	if _G.sellpack == false then
-		sellFarmLine:TweenSize(UDim2.new(1, 0,0, 2), "Out", "Sine", 0.3, true)
-		_G.sellpack = true
-		while _G.sellpack and wait(2) do
-			game:GetService("ReplicatedStorage").FrameworkReplicated.DataStreams:FindFirstChild("RequestSell_Functionv.06"):InvokeServer()
-		end
-	else
-		sellFarmLine:TweenSize(UDim2.new(0, 0,0, 2), "Out", "Sine", 0.3, true)
-		_G.sellpack = false
-	end
-end)
-
-questFarmButton.MouseButton1Click:connect(function()
-	if _G.quest == false then
-		questFarmLine:TweenSize(UDim2.new(1, 0,0, 2), "Out", "Sine", 0.3, true)
-		_G.quest = true
-		while _G.quest and wait(2) do
-			game:GetService("ReplicatedStorage").FrameworkReplicated.DataStreams:FindFirstChild("UpdateQuests_Eventv.06"):FireServer()
-		end
-	else
-		questFarmLine:TweenSize(UDim2.new(0, 0,0, 2), "Out", "Sine", 0.3, true)
-		_G.quest = false
-	end
-end)
-
-ToolsPage.MouseButton1Click:connect(function()
-	local Table = {
-		"Crowbar",
-		"Lockpick",
-		"Hammer",
-		"Hacking Device",
-		"Dynamite",
-		"Thermite"
-	}
-
-	for i, v in pairs(Table) do
-		local args = {
-			[1] = "Tool",
-			[2] = v
-		}
-		game:GetService("ReplicatedStorage").FrameworkReplicated.DataStreams:FindFirstChild("RequestPurchase_Functionv.06"):InvokeServer(unpack(args))
-	end
-end)
-
-BackPackspage.MouseButton1Click:connect(function()
-	local Table = {
-		"Bag",
-		"Basic Bag",
-		"Briefcase",
-		"Duffel Bag",
-		"Laptop Bag",
-		"Large Backpack",
-		"Office Bag",
-		"Sports Bag",
-		"Hiking Bag",
-		"Suitcase",
-		"Gym Bag"
-	}
-
-	for i, v in pairs(Table) do
-		local args = {
-			[1] = "Backpack",
-			[2] = v
-		}
-		game:GetService("ReplicatedStorage").FrameworkReplicated.DataStreams:FindFirstChild("RequestPurchase_Functionv.06"):InvokeServer(unpack(args))
-	end
-end)
-
-UpgradesPage.MouseButton1Click:connect(function()
-		local Table = {
-			"Stealth",
-			"Swipe Speed",
-			"Intimidation",
-			"Sprint Speed",
-			"Strength"
-		}
-
-		for i, v in pairs(Table) do
-		local args = {
-			[1] = v
-		}
-		game:GetService("ReplicatedStorage").FrameworkReplicated.DataStreams:FindFirstChild("UpgradeStats_Functionv.06"):InvokeServer(unpack(args))
-	end
-end)
-
-BluePrintsPage.MouseButton1Click:connect(function()
-	local Table = {
-		"Zone 2 Blueprint",
-		"Zone 3 Blueprint",
-		"Betting Store Blueprint",
-		"Tech Store Blueprint",
-		"Jewelry Store Blueprint",
-		"Bank Blueprint"
-	}
-	for i, v in pairs(Table) do
-		local args = {
-			[1] = "Blueprint",
-			[2] = v
-		}
-		game:GetService("ReplicatedStorage").FrameworkReplicated.DataStreams:FindFirstChild("RequestPurchase_Functionv.06"):InvokeServer(unpack(args))
-	end
-end)
 
 
 
